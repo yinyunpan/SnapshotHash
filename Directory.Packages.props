@@ -1,0 +1,11 @@
+﻿<Project>
+  <ItemGroup>
+    <PackageVersion Include="Google.Protobuf" Version="3.30.1" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.3" />
+    <PackageVersion Include="System.Data.HashFunction.MurmurHash" Version="2.0.0" />
+	<PackageVersion Include="coverlet.collector" Version="6.0.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageVersion Include="xunit" Version="2.5.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+</Project>
