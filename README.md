@@ -1,0 +1,2 @@
+# SnapshotHash
+Snapshot Hash
