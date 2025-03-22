@@ -79,6 +79,31 @@ namespace SnapshotHash
 
             return Compare(x?.Select(it => new KeyValueCollectionPairWrapper<TKey, TValue>(it)), y?.Select(it => new KeyValueCollectionPairWrapper<TKey, TValue>(it)));
         }
+
+        public static int Compare<TKey, TValue>(Dictionary<TKey, List<TValue>> x, Dictionary<TKey, List<TValue>> y)
+          where TKey : IComparable<TKey>
+          where TValue : IComparable<TValue>
+        {
+            var count1 = x?.Count() ?? 0;
+            var count2 = y?.Count() ?? 0;
+            if (count1 != count2)
+            {
+                return count1.CompareTo(count2);
+            }
+
+            if (count1 == 0)
+            {
+                return 0;
+            }
+
+            return Compare(x?.Select(it => new KeyValueCollectionPairWrapper<TKey, TValue>(ConvertPair(it))), y?.Select(it => new KeyValueCollectionPairWrapper<TKey, TValue>(ConvertPair(it))));
+        }
+
+        private static KeyValuePair<TKey, IList<TValue>> ConvertPair<TKey, TValue>(KeyValuePair<TKey, List<TValue>> originalPair)
+        {
+            return new KeyValuePair<TKey, IList<TValue>>(originalPair.Key, originalPair.Value);
+        }
+
         public static int Compare(RepeatedField<ByteString> x, RepeatedField<ByteString> y)
         {
             var count1 = x?.Count ?? 0;
@@ -105,7 +130,6 @@ namespace SnapshotHash
 
             return 0;
         }
-
 
         private struct KeyValuePairWrapper<TKey, TValue> : IComparable<KeyValuePairWrapper<TKey, TValue>>
             where TKey : IComparable<TKey>

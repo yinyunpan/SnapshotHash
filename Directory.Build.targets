@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+	<Target Name="Husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(CI_SONAR_PROJECT_KEY)' == '' And '$(envType)' == '' And '$(HUSKY)' != 0">
+	<Message Importance="high" Text="Restoring dependencies dotnet tool. This may take several minutes..." />
+	<Exec Command="dotnet tool restore" StandardOutputImportance="Low" StandardErrorImportance="High" />
+	<Exec Command="dotnet husky install" StandardOutputImportance="Low" StandardErrorImportance="High" WorkingDirectory="..\.." />
+</Target>
+</Project>
